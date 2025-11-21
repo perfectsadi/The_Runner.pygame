@@ -3,10 +3,7 @@ import sys
 from random import randint
 
 
-
 #initisializing setting
-
-
 def obstacle_movement(obstacle_list):
     if obstacle_list:
         for obstacle_rect in obstacle_list:
@@ -148,7 +145,7 @@ while True:
         obstacle_rect_list = obstacle_movement(obstacle_rect_list)
 
         #player
-        player_gravity+=0.9
+        player_gravity+=0.85
         player_rect.y +=player_gravity
         if player_rect.bottom >= 300:player_rect.bottom =300
         player_animation()
