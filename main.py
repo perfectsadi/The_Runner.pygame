@@ -3,7 +3,7 @@ import sys
 from random import randint
 
 
-#initisializing setting
+#initializing setting
 def obstacle_movement(obstacle_list):
     if obstacle_list:
         for obstacle_rect in obstacle_list:
@@ -52,8 +52,8 @@ clock = pygame.time.Clock()
 
 score =0
 #text=on the display
-score_font=pygame.font.Font("font/pixeltype.ttf",50)
-end_text=pygame.font.Font("font/pixeltype.ttf",50)
+score_font=pygame.font.Font("font/Pixeltype.ttf",50)
+end_text=pygame.font.Font("font/Pixeltype.ttf",50)
 end_surface=end_text.render(f"DEAD !   Press  'SPACE'  to  try  again !",False,("black"))
 
 score_surface=score_font.render(f"Your score is   {score}",False,("black"))
@@ -88,8 +88,8 @@ snail_index=0
 snail_surface=snail_walking[snail_index]
 snail_rect=snail_surface.get_rect(bottomright=(800,300))
 
-fly_1=pygame.image.load("graphics/Fly/fly1.png").convert_alpha()
-fly_2=pygame.image.load("graphics/Fly/fly2.png").convert_alpha()
+fly_1=pygame.image.load("graphics/fly/fly1.png").convert_alpha()
+fly_2=pygame.image.load("graphics/fly/fly2.png").convert_alpha()
 fly_index=0
 fly_flying=[fly_1,fly_2]
 fly_surface=fly_flying[fly_index]
