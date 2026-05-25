@@ -5,6 +5,7 @@ from random import randint
 
 #initializing setting
 def obstacle_movement(obstacle_list):
+    global obstacle_rect_list
     if obstacle_list:
         for obstacle_rect in obstacle_list:
             obstacle_rect.x -=5
@@ -43,11 +44,16 @@ def collisions(player,obstacles):
     return True
 def score_get():
     global score
+    global score_surface, start_time
+    # score is time survived in seconds
+    score = (pygame.time.get_ticks() - start_time) // 1000 
+    score_surface = score_font.render(f"Your score is   {score}", False,("black"))
+    return score
 
 pygame.init()
 game_active=True
 screen=pygame.display.set_mode((800,400))
-pygame.display.set_caption="Pixel Runner"
+pygame.display.set_caption("Pixel Runner")
 clock = pygame.time.Clock()
 
 score =0
@@ -72,6 +78,9 @@ jump_sound.set_volume(0.5)
 bgsound=pygame.mixer.Sound('audio/music.wav')
 bgsound.set_volume(0.3)
 bgsound.play(loops= -1)
+
+# start time for score (milliseconds)
+start_time = pygame.time.get_ticks()
 
 player_surf=player_walking[player_index]
 player_rect= player_surf.get_rect(bottomleft=(20,300))
@@ -122,6 +131,11 @@ while True:
             if event.type ==pygame.KEYDOWN and event.key == pygame.K_SPACE:
                 game_active=True
                 snail_rect.x=800
+                # reset scoring and timers
+                start_time = pygame.time.get_ticks()
+                score = 0
+                obstacle_rect_list.clear()
+                player_rect.bottom = 300
         if event.type == obstacle_clock and game_active==True:
             if randint(0,2):
                 obstacle_rect_list.append(snail_surface.get_rect(bottomright=(randint(900,1100),300)))
@@ -162,6 +176,10 @@ while True:
         if event.type == pygame.KEYDOWN :
             if event.key ==pygame.K_SPACE:
                 game_active=True
+                start_time = pygame.time.get_ticks()
+                score = 0
+                obstacle_rect_list.clear()
+                player_rect.bottom = 300
                 
 
     #Updating 
